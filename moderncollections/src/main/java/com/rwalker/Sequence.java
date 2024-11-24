@@ -222,31 +222,23 @@ public class Sequence<E> implements Iterable<E> {
 
         if (!enforceSort){
             // Just regular append operation when enforcing
-            if (item != null){
-                addToEnd(item);
-            } else {
-                throw new IllegalArgumentException("null not allowed for append");
-            }
+            addToEnd(item);
         } else if (enforceSort){
             // Sorted append operation
-            if (item != null){
-                if (length() == 0){ // No point sorting on the first insert
-                    addToEnd(item);
-                } else {
-                    /*
-                    * First calculate the index for the term to be inserted into (Binary search)
-                    * Then use the insert operation to do this
-                    */
-
-                    int index = BinarySearch.findInsertionIndex(array, startPointer, endPointer, item, defaultComparator);
-                    int appendIndex = index-startPointer; // Convert from subarray index
-                    insert(appendIndex, item);
-
-                    // addToEnd(item);
-                    // sort();
-                }
+            if (length() == 0){ // No point sorting on the first insert
+                addToEnd(item);
             } else {
-                throw new IllegalArgumentException("null not allowed for append");
+                /*
+                * First calculate the index for the term to be inserted into (Binary search)
+                * Then use the insert operation to do this
+                */
+
+                int index = BinarySearch.findInsertionIndex(array, startPointer, endPointer, item, defaultComparator);
+                int appendIndex = index-startPointer; // Convert from subarray index
+                insert(appendIndex, item);
+
+                // addToEnd(item);
+                // sort();
             }
         }
     }
@@ -506,11 +498,7 @@ public class Sequence<E> implements Iterable<E> {
      */
     public void enqueue(E item){
 
-        if (item != null){
-            append(item);
-        } else {
-            throw new IllegalArgumentException("null not allowed for append");
-        }
+        append(item);
 
     }
 
@@ -535,11 +523,7 @@ public class Sequence<E> implements Iterable<E> {
      */
     public void push (E item) {
         
-        if (item != null){
-            append(item);
-        } else {
-            throw new IllegalArgumentException("null not allowed for append");
-        }
+        append(item);
         
 
     }
@@ -712,9 +696,7 @@ public class Sequence<E> implements Iterable<E> {
         if (length() != 0){
             // Add all terms to the StringBuilder
             for (int i = startPointer; i < endPointer; i++){
-                if (array[i] != null){
-                    sb.append(array[i] + ", ");
-                }
+                sb.append(array[i] + ", ");
             }
             // Find and remove last comma and space
             int lastComma = sb.lastIndexOf(",");
@@ -893,7 +875,8 @@ public class Sequence<E> implements Iterable<E> {
 
         // Now loop over and add all items to the larger list
         int secondCount = 0; // This counts from index 0 for the new array
-        for (int i = startPointer; i < endPointer-removed; i++){ // This counts from index startPointer for the old array
+        // Remvoed is not used so -1 as we reformat each time we remove
+        for (int i = startPointer; i < endPointer-1; i++){ // This counts from index startPointer for the old array
 
             // Get current term from the array
             E curTerm = array[i];

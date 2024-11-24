@@ -26,6 +26,8 @@ public class ArrayListTest {
 
     /**
      * Test removal of two items from the list
+     * 
+     * [100, 52, 250, 5, 112, 1052, 9, 100, 3, 52]
      */
     @Test
     public void testRandomRemoval() {
@@ -220,5 +222,15 @@ public class ArrayListTest {
         toAdd.append(60);
         testing.appendAll(toAdd);
         assertEquals("[10, 20, 30, 40, 50, 60]", testing.toString());
+    }
+
+    @Test
+    public void testAppendNull() {
+        Sequence<Integer> testing = new Sequence<>();
+        testing.append(10);
+        testing.append(20);
+        testing.append(30);
+        testing.append(null);
+        assertEquals("[10, 20, 30, null]", testing.toString());
     }
 }
