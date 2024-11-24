@@ -11,6 +11,7 @@ package com.rwalker;
 
 import java.util.Comparator;
 
+@SuppressWarnings("unused")
 public class Student {
 
     private String name;

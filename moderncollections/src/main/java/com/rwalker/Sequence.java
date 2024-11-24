@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "unused"})
 public class Sequence<E> implements Iterable<E> {
 
     // Runtime variables

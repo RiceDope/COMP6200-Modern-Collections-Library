@@ -51,7 +51,7 @@ public class ArrayListTest {
     @Test(expected=ArrayIndexOutOfBoundsException.class)
     public void testGetNegative() {
         Sequence<Integer> testing = TestUtils.generateFullSmallSequence();
-        int out = testing.get(-1);
+        testing.get(-1);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ArrayListTest {
     @Test(expected=ArrayIndexOutOfBoundsException.class)
     public void testGetOutOfBounds() {
         Sequence<Integer> testing = TestUtils.generateFullSmallSequence();
-        int out = testing.get(100);
+        testing.get(100);
     }
 
     /**
